@@ -1,0 +1,46 @@
+version: "3.11"
+
+services:
+  db:
+    image: postgres:14  # バージョンを14に更新
+    ports:
+      - "5433:5433"  # ホストの5433をコンテナの5433にマッピング
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: e_learning
+      POSTGRES_PORT: 5433  # PostgreSQLのポートを5433に設定
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    command: -p 5433  # PostgreSQLが5433ポートで起動するように設定
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -p 5433"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: ./el_system
+    command: >
+      sh -c "python manage.py migrate &&
+             echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'adminpass') if not User.objects.filter(username='admin').exists() else None\" | python manage.py shell &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./el_system:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - POSTGRES_DB=e_learning
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5433
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+      - DJANGO_SUPERUSER_PASSWORD=adminpass
+
+volumes:
+  db_data:
