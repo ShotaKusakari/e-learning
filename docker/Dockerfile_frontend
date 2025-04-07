@@ -1,0 +1,20 @@
+# ベースイメージ
+FROM node:18-alpine
+
+# ワークディレクトリ
+WORKDIR /app
+
+# package.jsonとpackage-lock.jsonをコピー
+COPY package*.json ./
+
+# 依存関係のインストール
+RUN npm install
+
+# プロジェクトファイルをコピー
+COPY . .
+
+# 開発用ポートを公開
+EXPOSE 3000
+
+# コンテナ起動時のコマンド
+CMD ["npm", "run", "dev"]
