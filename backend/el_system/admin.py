@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Course, Question, Choice, QuestionContent, ChoiceContent
+from .models import Courses, Questions, Choices, QuestionsContents, ChoicesContents
 
-admin.site.register(Course)
-admin.site.register(Question)
-admin.site.register(Choice)
-admin.site.register(QuestionContent)
-admin.site.register(ChoiceContent)
+admin.site.register(Courses)
+admin.site.register(Questions)
+admin.site.register(Choices)
+admin.site.register(QuestionsContents)
+admin.site.register(ChoicesContents)
