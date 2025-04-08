@@ -34,19 +34,3 @@ e-learning/
 9.  **Material UI の設定:** Material UI をインストールし、必要なコンポーネントをインポートして使用できるようにします。
 10. **ディレクトリ構造の作成:** 上記のディレクトリ構造を作成し、必要なファイルを配置します。
 11. **初期コンポーネントの作成:** トップページ (`app/page.tsx`) とルートレイアウト (`app/layout.tsx`) の初期コンポーネントを作成します。
-
-## Mermaid 図
-
-```mermaid
-graph LR
-    A[Dockerfile の作成] --> B(docker-compose.yml の作成)
-    B --> C(.dockerignore の作成)
-    C --> D(Docker イメージのビルド)
-    D --> E(Docker コンテナの起動)
-    E --> F(フロントエンド側の仮想環境の作成)
-    F --> G[Next.js プロジェクトの作成]
-    G --> H(Tailwind CSS の設定)
-    H --> I(Material UI の設定)
-    I --> J(ディレクトリ構造の作成)
-    J --> K(初期コンポーネントの作成)
-    K --> L(完了)
