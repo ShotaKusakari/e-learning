@@ -2,17 +2,17 @@ version: "3.11"
 
 services:
   db:
-    image: postgres:14  # バージョンを14に更新
+    image: postgres:14
     ports:
-      - "5433:5433"  # ホストの5433をコンテナの5433にマッピング
+      - "5433:5433"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: e_learning
-      POSTGRES_PORT: 5433  # PostgreSQLのポートを5433に設定
+      POSTGRES_PORT: 5433
     volumes:
       - db_data:/var/lib/postgresql/data
-    command: -p 5433  # PostgreSQLが5433ポートで起動するように設定
+    command: -p 5433
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -p 5433"]
       interval: 5s
@@ -20,7 +20,9 @@ services:
       retries: 5
 
   web:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: ../docker/Dockerfile_backend
     command: >
       sh -c "python manage.py migrate &&
              echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('$${DJANGO_SUPERUSER_USERNAME}', '$${DJANGO_SUPERUSER_EMAIL}', '$${DJANGO_SUPERUSER_PASSWORD}') if not User.objects.filter(username='$${DJANGO_SUPERUSER_USERNAME}').exists() else None\" | python manage.py shell &&
@@ -41,6 +43,7 @@ services:
       DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
       DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+
   frontend:
     build:
       context: ./frontend
@@ -55,4 +58,4 @@ services:
 
 volumes:
   db_data:
-  node_modules:  # node_modulesボリュームを定義
+  node_modules:
