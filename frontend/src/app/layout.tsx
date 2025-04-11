@@ -1,19 +1,4 @@
-"use client";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "./theme";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
+import '@mui/material/styles';
 
 export default function RootLayout({
   children,
@@ -21,11 +6,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <html lang="ja">
+      <body>
+        {children}
       </body>
     </html>
   );
