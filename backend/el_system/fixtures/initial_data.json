@@ -1,0 +1,95 @@
+[
+  {
+    "model": "el_system.courses",
+    "pk": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "fields": {
+      "name": "基本情報 科目B",
+      "description": "基本情報技術者試験の科目B",
+      "status": "published"
+    }
+  },
+  {
+    "model": "el_system.questions",
+    "pk": "b1c2d3e4-f5a6-8901-2345-678901bcdefa",
+    "fields": {
+      "course_id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      "question_text": "科目Bの試験時間について教えてください。",
+      "question_type": "choice",
+      "status": true
+    }
+  },
+  {
+    "model": "el_system.questions",
+    "pk": "c1d2e3f4-a5b6-9012-3456-789012cdefab",
+    "fields": {
+      "course_id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      "question_text": "科目Bの出題範囲について教えてください。",
+      "question_type": "choice",
+      "status": true
+    }
+  },
+  {
+    "model": "el_system.questions",
+    "pk": "d1e2f3a4-b5c6-0123-4567-890123defabc",
+    "fields": {
+      "course_id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      "question_text": "科目Bの合格基準について教えてください。",
+      "question_type": "choice",
+      "status": true
+    }
+  },
+  {
+    "model": "el_system.choices",
+    "pk": "e1f2a3b4-c5d6-2345-6789-012345efabcd",
+    "fields": {
+      "question_id": "b1c2d3e4-f5a6-8901-2345-678901bcdefa",
+      "choice_text": "2時間30分",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "el_system.choices",
+    "pk": "f1a2b3c4-d5e6-3456-7890-123456fabcde",
+    "fields": {
+      "question_id": "b1c2d3e4-f5a6-8901-2345-678901bcdefa",
+      "choice_text": "3時間",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "el_system.choices",
+    "pk": "a1b2c3d4-e5f6-4567-8901-234567abcdef",
+    "fields": {
+      "question_id": "c1d2e3f4-a5b6-9012-3456-789012cdefab",
+      "choice_text": "テクノロジ系、マネジメント系、ストラテジ系",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "el_system.choices",
+    "pk": "b1c2d3e4-f5a6-5678-9012-345678bcdefa",
+    "fields": {
+      "question_id": "c1d2e3f4-a5b6-9012-3456-789012cdefab",
+      "choice_text": "午前、午後",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "el_system.choices",
+    "pk": "c1d2e3f4-a5b6-6789-0123-456789cdefab",
+    "fields": {
+      "question_id": "d1e2f3a4-b5c6-0123-4567-890123defabc",
+      "choice_text": "60%",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "el_system.choices",
+    "pk": "d1e2f3a4-b5c6-7890-2345-678901defabc",
+    "fields": {
+      "question_id": "d1e2f3a4-b5c6-0123-4567-890123defabc",
+      "choice_text": "50%",
+      "is_correct": false
+    }
+  }
+]

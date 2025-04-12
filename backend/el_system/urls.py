@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+from .views import CourseListAPIView, RandomQuestionAPIView
 
 urlpatterns = [
-    # path('', views.index, name='index'),
+    path('api/courses/', CourseListAPIView.as_view(), name='course-list'),
+    path('api/fe/questions/', RandomQuestionAPIView.as_view(), name='random-question'),
 ]
