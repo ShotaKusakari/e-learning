@@ -19,6 +19,7 @@ class CourseListAPIView(APIView):
 class RandomQuestionAPIView(APIView):
     def post(self, request):
         try:
+            logger.debug(f"request.data: {request.data}")
             course_id = request.data.get('courseId')
             question = get_random_question_data(course_id)
             serializer = QuestionSerializer(question)
