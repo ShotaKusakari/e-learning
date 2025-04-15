@@ -17,10 +17,12 @@ class CourseListAPIView(APIView):
             return Response({"error": "Internal Server Error"}, status=500)
 
 class RandomQuestionAPIView(APIView):
-    def get(self, request):
+    def post(self, request):
         try:
-            question = get_random_question_data()
+            course_id = request.data.get('courseId')
+            question = get_random_question_data(course_id)
             serializer = QuestionSerializer(question)
+            logger.debug(f"Serializer data: {serializer.data}")
             return Response(serializer.data)
         except Exception as e:
             logger.error(f"Error while processing RandomQuestionAPIView: {e}")

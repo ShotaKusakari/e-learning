@@ -20,12 +20,19 @@ class ChoiceSerializer(serializers.ModelSerializer):
 class QuestionContentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestionsContents
-        fields = ('id', 'contents')
+        fields = ('contents',)
 
 class QuestionSerializer(serializers.ModelSerializer):
     choices = ChoiceSerializer(many=True, read_only=True)
-    question_contents = QuestionContentsSerializer(many=True, read_only=True)
+    image_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Questions
-        fields = ('id', 'question_text', 'choices', 'question_contents')
+        fields = ('id', 'question_text', 'choices', 'image_url')
+
+    def get_image_url(self, obj):
+        try:
+            question_content = QuestionsContents.objects.get(question_id=obj.id)
+            return question_content.contents.get('image_url')
+        except QuestionsContents.DoesNotExist:
+            return None

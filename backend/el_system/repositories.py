@@ -13,12 +13,14 @@ def get_all_courses():
         logger.error(f"Error while getting all courses: {e}")
         return None
 
-def get_random_question():
+def get_random_question(course_id):
     try:
         logger.debug("Getting a random question from the database")
-        question = Questions.objects.order_by('?').first()
+        question = Questions.objects.filter(course_id=course_id).order_by('?').first()
         if question:
-            logger.debug(f"Successfully retrieved random question with ID: {question.id}")
+            question.choices = question.choices_set.all()
+        if question:
+            logger.debug(f"Successfully retrieved random question: {question.__dict__}")
         else:
             logger.warning("No questions found in the database")
         return question

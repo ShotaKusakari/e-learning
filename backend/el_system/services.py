@@ -13,10 +13,10 @@ def get_course_list_data():
         logger.error(f"Error while getting course list data: {e}")
         return None
 
-def get_random_question_data():
+def get_random_question_data(course_id):
     try:
         logger.debug("Start getting random question data...")
-        question = get_random_question()
+        question = get_random_question(course_id)
         logger.debug("Successfully retrieved random question data")
         return question
     except Exception as e:
