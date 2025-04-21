@@ -1,6 +1,6 @@
 export const fetchQuestion = async (courseId: string) => {
   // TODO: APIのエンドポイントを設定
-  const API_ENDPOINT = `/el_system/api/fe/questions`;
+  const API_ENDPOINT = `http://localhost:8000/el_system/api/fe/questions/`;
   try {
     const response = await fetch(API_ENDPOINT, {
       method: 'POST',
@@ -24,7 +24,7 @@ export const fetchQuestion = async (courseId: string) => {
 
 export const fetchNextQuestion = async (courseId: string, currentQuestionId: string) => {
   // TODO: APIのエンドポイントを設定
-  const API_ENDPOINT = `/el_system/api/fe/next_question`;
+  const API_ENDPOINT = `http://localhost:8000/el_system/api/fe/next_question`;
   try {
     const response = await fetch(API_ENDPOINT, {
       method: 'POST',
@@ -47,3 +47,15 @@ export const fetchNextQuestion = async (courseId: string, currentQuestionId: str
   }
 };
 
+export interface Choice {
+  id: string;
+  choice_text: string;
+  is_correct: boolean;
+}
+
+export interface Question {
+  id: string;
+  question_text: string;
+  choices: Choice[];
+  image_url: string | null;
+}
