@@ -1,6 +1,11 @@
 # ベースイメージ
 FROM node:18-alpine
 
+ENV NODE_ENV=development
+ENV WATCHPACK_POLLING=true
+ENV CHOKIDAR_USEPOLLING=true
+ENV FAST_REFRESH=true
+
 # ワークディレクトリ
 WORKDIR /app
 
@@ -9,6 +14,7 @@ COPY package*.json ./
 
 # 依存関係のインストール
 RUN npm install
+# RUN npm install lightningcss
 
 # プロジェクトファイルをコピー
 COPY . .
