@@ -6,40 +6,39 @@ import { Card, CardContent, Typography, Button, useMediaQuery } from '@mui/mater
 import Stack from '@mui/material/Stack';
 import { useRouter } from 'next/navigation';
 
-const debugCourses: Course[] = [
-  { id: '1', name: 'デバッグコース1', description: 'これはデバッグコース1の説明です。' },
-  { id: '2', name: 'デバッグコース2', description: 'これはデバッグコース2の説明です。' },
-  { id: '3', name: 'デバッグコース3', description: 'これはデバッグコース3の説明です。' },
-];
+
+
+
+
+
 
 const UserPage = () => {
   const router = useRouter();
-  const [courses, setCourses] = useState<Course[]>(debugCourses);
-  /* // useEffectフックをコメントアウト
-    useEffect(() => {
-      const loadCourses = async () => {
-        try {
-          const data = await fetchCourses();
-          setCourses(data);
-        } catch (error) {
-          console.error('Failed to load courses:', error);
-        }
-      };
+  const [courses, setCourses] = useState<Course[]>([]);
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
 
-      loadCourses();
-    }, []);
-    */
+  useEffect(() => {
+    const loadCourses = async () => {
+      try {
+        const data = await fetchCourses();
+        setCourses(data);
+      } catch (error) {
+        console.error('Failed to load courses:', error);
+      }
+    };
 
-   const handleCourseClick = (courseId: string) => {
-     router.push(`/user/courses/${courseId}`);
-   };
+    loadCourses();
+  }, []);
+
+  const handleCourseClick = (courseId: string) => {
+    router.push(`/user/courses/${courseId}`);
+  };
 
   return (
     <main>
       <div>
         <Stack spacing={4} alignItems="center">
           {courses.map((course) => {
-            const isSmallScreen = useMediaQuery('(max-width:600px)');
             const cardWidth = isSmallScreen ? '100%' : '80%';
 
             return (

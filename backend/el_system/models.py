@@ -18,7 +18,7 @@ class Courses(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 
 class Questions(models.Model):
     class Meta:
@@ -53,7 +53,8 @@ class Choices(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return self.choice_text
+        return str(self.id)
+
 
 class QuestionsContents(models.Model):
     class Meta:
@@ -67,7 +68,9 @@ class QuestionsContents(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return str(self.contents)
+        return str(self.id)
+
+
 class ChoicesContents(models.Model):
     class Meta:
         db_table = 'choices_contents'
@@ -79,4 +82,4 @@ class ChoicesContents(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return str(self.contents)
+        return str(self.id)

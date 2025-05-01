@@ -5,7 +5,7 @@ export interface Course {
   // 他のコースのプロパティ
  }
 
- const API_ENDPOINT = 'el_system/api/courses'; // Django APIのエンドポイント
+ const API_ENDPOINT = 'http://localhost:8000/el_system/api/courses/'; // Django APIのエンドポイント
 
  export const fetchCourses = async (): Promise<Course[]> => {
   try {
